@@ -11,13 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Run Snyk to check Docker image for vulnerabilities
+    - name: Snyk test
       run: |
         curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
         chmod +x ./snyk
         mv ./snyk /usr/local/bin/
         snyk auth ${{ secrets.SNYK_TOKEN }}
-        snyk container test vulnerables/web-dvwa --sarif --sarif --sarif-file-output=snyk.sarif || true
+        snyk container test --sarif --sarif --sarif-file-output=snyk.sarif || true
         cp snyk.sarif /tmp
        
     - name: save results file
