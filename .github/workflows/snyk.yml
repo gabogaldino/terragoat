@@ -10,8 +10,8 @@ jobs:
   snyk:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Snyk test
+    - uses: snyk/actions/docker@master
+    - name: Run Snyk to check Docker image for vulnerabilities
       run: |
         curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
         chmod +x ./snyk
